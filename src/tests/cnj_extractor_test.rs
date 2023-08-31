@@ -1,7 +1,7 @@
 #[path = "../cnj_extractor.rs"]
 mod cnj_extractor;
 
-use chrono::prelude::*;
+use time::OffsetDateTime;
 
 #[test]
 fn test_extract_simple_cnj() {
@@ -114,14 +114,14 @@ fn test_extract_only_cnjs_with_valid_year() {
 
 #[test]
 fn test_extract_cnj_with_current_year() {
-    let input = format!("0053087-35.{}.8.13.0693", Utc::now().year());
+    let input = format!("0053087-35.{}.8.13.0693", OffsetDateTime::now_utc().year());
 
     assert_eq!(cnj_extractor::extract(&input), vec![input.as_str()])
 }
 
 #[test]
 fn test_extract_cnj_with_last_valid_year() {
-    let input = format!("0053087-35.{}.8.13.0693", Utc::now().year() + 2);
+    let input = format!("0053087-35.{}.8.13.0693", OffsetDateTime::now_utc().year() + 2);
 
     assert_eq!(cnj_extractor::extract(&input), vec![input.as_str()])
 }

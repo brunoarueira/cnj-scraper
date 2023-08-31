@@ -8,5 +8,5 @@ edition = "2018"
 
 [dependencies]
 regex = "*"
-chrono = "*"
+time = "*"
 itertools = "*"
