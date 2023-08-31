@@ -1,4 +1,4 @@
-use chrono::prelude::*;
+use time::OffsetDateTime;
 use itertools::Itertools;
 use regex::Regex;
 
@@ -8,7 +8,7 @@ const REGEX_NUMBER: &str = r"\d*";
 const YEAR_OF_FIRST_LAWSUIT: i32 = 1895; // Year of the first lawsuit in Brazil
 
 pub fn extract(input: &str) -> Vec<String> {
-    let last_valid_year: i32 = Utc::now().year() + 2;
+    let last_valid_year: i32 = OffsetDateTime::now_utc().year() + 2;
     let regex = Regex::new(&format!("{}|({})", REGEX, REGEX_CNJ)).unwrap();
     let regex_number = Regex::new(REGEX_NUMBER).unwrap();
 
